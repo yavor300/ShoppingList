@@ -29,6 +29,7 @@ public class HomeController {
         model.addAttribute("foods", productService.findAllByCategoryName(CategoryName.FOOD));
         model.addAttribute("households", productService.findAllByCategoryName(CategoryName.HOUSEHOLD));
         model.addAttribute("others", productService.findAllByCategoryName(CategoryName.OTHER));
+        model.addAttribute("allProductsCount", productService.getTotalCount());
 
         return "home";
     }

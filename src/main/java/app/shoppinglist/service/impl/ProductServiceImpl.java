@@ -62,4 +62,9 @@ public class ProductServiceImpl implements ProductService {
     public void buyAll() {
         productRepository.deleteAll();
     }
+
+    @Override
+    public long getTotalCount() {
+        return productRepository.count();
+    }
 }

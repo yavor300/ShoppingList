@@ -17,4 +17,6 @@ public interface ProductService {
     void buyById(String id);
 
     void buyAll();
+
+    long getTotalCount();
 }

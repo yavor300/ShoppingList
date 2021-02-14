@@ -46,7 +46,7 @@
 					</div>
             </div>
         </div>
-        <a href="/products/buy/all" class="btn btn-danger" th:text="|Buy all products for ${totalSum} lv|"></a>
+        <a th:if="${allProductsCount != 0}" href="/products/buy/all" class="btn btn-danger" th:text="|Buy all products for ${totalSum} lv|"></a>
     </div>
 </main>
     <div th:replace="fragments/fragment :: footer"></div>
