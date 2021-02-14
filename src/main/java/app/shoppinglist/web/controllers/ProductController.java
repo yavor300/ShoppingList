@@ -29,7 +29,7 @@ public class ProductController {
     @GetMapping("/add")
     public String add(Model model , HttpSession httpSession) {
         if (httpSession.getAttribute("user") == null) {
-            return "redirect:/login";
+            return "redirect:/users/login";
         }
 
         if (!model.containsAttribute("productAddBindingModel")) {
