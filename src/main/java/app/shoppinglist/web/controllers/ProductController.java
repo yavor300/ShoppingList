@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -26,7 +27,11 @@ public class ProductController {
     }
 
     @GetMapping("/add")
-    public String add(Model model) {
+    public String add(Model model , HttpSession httpSession) {
+        if (httpSession.getAttribute("user") == null) {
+            return "redirect:/login";
+        }
+
         if (!model.containsAttribute("productAddBindingModel")) {
             model.addAttribute("productAddBindingModel", new ProductAddBindingModel());
         }
