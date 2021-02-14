@@ -88,4 +88,10 @@ public class UserController extends BaseController {
 
         return "redirect:/";
     }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession httpSession) {
+        httpSession.invalidate();
+        return "redirect:/";
+    }
 }

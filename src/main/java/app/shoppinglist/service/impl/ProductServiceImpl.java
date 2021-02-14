@@ -2,14 +2,20 @@ package app.shoppinglist.service.impl;
 
 import app.shoppinglist.domain.entities.Category;
 import app.shoppinglist.domain.entities.Product;
+import app.shoppinglist.domain.entities.enums.CategoryName;
 import app.shoppinglist.domain.models.service.CategoryServiceModel;
 import app.shoppinglist.domain.models.service.ProductServiceModel;
+import app.shoppinglist.domain.models.view.ProductViewModel;
 import app.shoppinglist.repository.ProductRepository;
 import app.shoppinglist.service.CategoryService;
 import app.shoppinglist.service.ProductService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -32,5 +38,18 @@ public class ProductServiceImpl implements ProductService {
 
         product.setCategory(category);
         productRepository.save(product);
+    }
+
+    @Override
+    public BigDecimal getTotalSum() {
+        return productRepository.findTotalProductsSum();
+    }
+
+    @Override
+    public List<ProductViewModel> findAllByCategoryName(CategoryName categoryName) {
+        return productRepository.findAllByCategory_Name(categoryName)
+                .stream()
+                .map(product -> modelMapper.map(product, ProductViewModel.class))
+                .collect(Collectors.toList());
     }
 }
