@@ -15,4 +15,6 @@ public interface ProductService {
     List<ProductViewModel> findAllByCategoryName(CategoryName categoryName);
 
     void buyById(String id);
+
+    void buyAll();
 }

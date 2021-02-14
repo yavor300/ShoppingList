@@ -57,4 +57,9 @@ public class ProductServiceImpl implements ProductService {
     public void buyById(String id) {
         productRepository.deleteById(id);
     }
+
+    @Override
+    public void buyAll() {
+        productRepository.deleteAll();
+    }
 }
