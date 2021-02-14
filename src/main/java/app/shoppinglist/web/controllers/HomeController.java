@@ -2,12 +2,13 @@ package app.shoppinglist.web.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
-public class HomeController extends BaseController {
+public class HomeController {
     @GetMapping("/")
-    public ModelAndView home() {
-        return super.view("index");
+    public String home(HttpSession httpSession) {
+        return httpSession.getAttribute("user") == null ? "index" : "home";
     }
 }
